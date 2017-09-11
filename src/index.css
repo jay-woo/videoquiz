@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+  font: 100% "Roboto", "Arial", sans-serif; }
+
+.Navbar {
+  background-color: #f5f5f5;
+  color: #6a7070;
+  font: 100% "Open Sans", "Helvetica", "Verdana", sans-serif; }
+
+.Navbar-logo {
+  height: 60px; }
+
+.Navbar-links {
+  float: right; }
+
+.Navbar-links a {
+  text-decoration: none;
+  float: left; }

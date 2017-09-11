@@ -1,0 +1,32 @@
+// Fonts
+$header-font-stack: 'Open Sans', 'Helvetica', 'Verdana', sans-serif;
+$body-font-stack: 'Roboto', 'Arial', sans-serif;
+
+// Colors
+$header-background-color: #f5f5f5;
+$header-font-color: #6a7070;
+
+body {
+  margin: 0;
+  padding: 0;
+  font: 100% $body-font-stack;
+}
+
+.Navbar {
+  background-color: $header-background-color;
+  color: $header-font-color;
+  font: 100% $header-font-stack;
+}
+
+.Navbar-logo {
+  height: 60px;
+}
+
+.Navbar-links {
+  float: right;
+}
+
+.Navbar-links a {
+  text-decoration:none;
+  float: left;
+}
