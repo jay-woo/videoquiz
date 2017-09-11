@@ -14,6 +14,12 @@ class App extends Component {
 				dueEnd: "Oct 30, 2016",
 				objective: "To develop knowledge and skills related to the student's understanding of rehearsal techniques, and his/her abilities in the ensemble performance as well as the knowledge of music literature and conducting skills.",
 				description: "As you watch the video, quiz questions will appear. You must answer all questions to submit the quiz."
+			},
+			quiz: {
+				questions: [],
+				choices: [],
+				points: [1, 3, 3, 1, 3],
+				answers: []
 			}
 		};
 	}
@@ -22,7 +28,7 @@ class App extends Component {
     return (
     	<div className="App">
       	<Navbar username={this.state.username} />
-      	<Content quizInfo={this.state.quizInfo} />
+      	<Content quizInfo={this.state.quizInfo} quiz={this.state.quiz} />
       </div>
     );
   }

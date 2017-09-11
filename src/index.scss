@@ -1,25 +1,32 @@
 // Fonts
 $header-font-stack: 'Open Sans', 'Helvetica', 'Verdana', sans-serif;
-$body-font-stack: 'Roboto', 'Arial', sans-serif;
+$body-font-stack: 'Arial', sans-serif;
 
 // Colors
-$header-background-color: #f5f5f5;
-$header-font-color: #6a7070;
+$navbar-background-color: #f5f5f5;
+$navbar-font-color: #6a7070;
+$accent-background-color: #005a70;
 
+// Global styles
 body {
   margin: 0;
   padding: 0;
-  font: 100% $body-font-stack;
+  font: 80% $body-font-stack;
+  line-height: 180%;
 }
 
+.clear {
+  clear: both;
+}
+
+// Navbar styles
 .Navbar {
-  background-color: $header-background-color;
-  color: $header-font-color;
+  background-color: $navbar-background-color;
   font: 100% $header-font-stack;
 }
 
 .Navbar-logo {
-  height: 60px;
+  height: 4em;
 }
 
 .Navbar-links {
@@ -27,6 +34,89 @@ body {
 }
 
 .Navbar-links a {
-  text-decoration:none;
+  text-decoration: none;
   float: left;
+  color: $navbar-font-color;
+}
+
+// Content styles
+.Content {
+  width: 80%;
+  margin: 0 auto;
+}
+
+// VideoQuizHeader styles
+$header-border-color: #d0d0d0;
+
+.VideoQuizHeader {
+  margin: 2em 0;
+}
+
+.VideoQuizHeader-title {
+  width: 60%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.VideoQuizHeader-points {
+  width: 10%;
+  float: left;
+  text-align: center;
+  box-sizing: border-box;
+  border-left: 1px solid $header-border-color;
+}
+
+.VideoQuizHeader-due {
+  width: 30%;
+  float: left;
+  text-align: right;
+  box-sizing: border-box;
+  border-left: 1px solid $header-border-color;
+}
+
+.VideoQuizHeader-objective {
+  border-top: 1px solid $header-border-color;
+  border-bottom: 1px solid $header-border-color;
+}
+
+// VideoQuiz styles
+.VideoQuiz {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+// Video styles
+.Video {
+  width: 50%;
+  float: left;
+}
+
+// Quiz styles
+.Quiz {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  right: 0; 
+}
+
+.Quiz-notStarted {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  right: 0; 
+  top: 0;
+  background-color: $accent-background-color;
+
+  p {
+    padding: 2em 20%;
+    color: white;
+    font-size: 150%;
+    text-align: center;
+  }
+}
+
+// QuestionSelector styles
+.QuestionSelector {
+  text-align: right;
 }
