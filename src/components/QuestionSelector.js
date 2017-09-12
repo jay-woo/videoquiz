@@ -1,21 +1,47 @@
 import React, { Component } from 'react';
+import QuestionList from './QuestionList';
 
 class QuestionSelector extends Component {
-  render() {
-  	if (!this.props.quizStarted) {
-  		return <div></div>;
-  	}
+  constructor(props) {
+    super(props);
 
-    let points = this.props.points;
+    this.state = {
+      menuOpen: false
+    }
+
+    this.onSelectionChange = this.onSelectionChange.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  onSelectionChange() {
+    let selection = document.getElementById('QuestionSelector-menu').selectedIndex;
+    this.props.gotoQuestion(selection);
+  }
+
+  toggleMenu() {
+    this.setState({
+      menuOpen: !this.state.menuOpen
+    });
+  }
+
+  render() {
 
     return (
       <div className="QuestionSelector">
-        <select name="select" defaultValue="value1">
-          <option value="value1">Value 1</option> 
-          <option value="value2">Value 2</option>
-          <option value="value3">Value 3</option>
-        </select>
-        <p>{points} {points == 1 ? 'point' : 'points'}</p>
+        <div onClick={this.toggleMenu}>
+          <p className="noselect">Question {this.props.currentQuestion + 1} of {this.props.numQuestions} ▾</p>
+        </div>
+
+        {this.state.menuOpen
+          ? <QuestionList 
+              selectedChoices={this.props.selectedChoices}
+              gotoQuestion={this.props.gotoQuestion}
+              toggleMenu={this.toggleMenu}
+              toggleError={this.toggleError}
+              currentTimeStamp={this.props.currentTimeStamp}
+            /> 
+          : <div></div>
+        }
       </div>
     );
   }

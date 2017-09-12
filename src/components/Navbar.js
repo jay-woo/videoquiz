@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../images/pearson_logo.png';
+import bell from '../images/bell.png';
+import question from '../images/question.png';
 
 class Navbar extends Component {
   render() {
@@ -8,9 +10,15 @@ class Navbar extends Component {
 	      <img className="Navbar-logo" src={logo} alt="Pearson" />
 
         <div className="Navbar-links">
-		      <a className="Navbar-icon" href=""><p>Bell</p></a>
-		      <a className="Navbar-icon" href=""><p>Question</p></a>
-		      <a className="Navbar-name" href=""><p>{this.props.username}</p></a>
+		      <a className="Navbar-icon">
+            <img src={bell} alt="Alerts" />
+          </a>
+		      <a className="Navbar-icon">
+            <img src={question} alt="Help" />
+          </a>
+		      <a className="Navbar-name">
+            <p>{this.props.username}</p>
+          </a>
         </div>
       </div>
     );
