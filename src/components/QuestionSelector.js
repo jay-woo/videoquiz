@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import QuestionList from './QuestionList';
+import ButtonSecondary from './ButtonSecondary';
 
 class QuestionSelector extends Component {
   constructor(props) {
@@ -28,9 +29,12 @@ class QuestionSelector extends Component {
 
     return (
       <div className="QuestionSelector">
-        <div onClick={this.toggleMenu}>
-          <p className="noselect">Question {this.props.currentQuestion + 1} of {this.props.numQuestions} ▾</p>
-        </div>
+        <ButtonSecondary
+          onClick={this.toggleMenu}
+          buttonText={`Question ${this.props.currentQuestion+1} of ${this.props.numQuestions} ▾`}
+          ariaLabel={"Change current question"}
+          tabIndex="4"
+        />
 
         {this.state.menuOpen
           ? <QuestionList 

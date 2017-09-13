@@ -18,10 +18,14 @@ class QuestionList extends Component {
 			let isPastTimeStamp = i <= this.props.currentTimeStamp;
 
 			return (
-				<div 
+				<button 
 					key={"question" + i}
+					type="button"
 					className={"QuestionList-item " + (isPastTimeStamp ? "enabled" : "disabled")}
 					onClick={isPastTimeStamp ? () => this.handleClick(i) : null}
+					tabIndex={isPastTimeStamp ? i+5 : '-1'}
+					aria-hidden={!isPastTimeStamp}
+					aria-label={`Go to question ${i+1}`}
 				>
 					<div className="QuestionList-item-number">{i+1}. </div>
 					<div className="QuestionList-item-info">
@@ -33,12 +37,12 @@ class QuestionList extends Component {
 						</div>
 						<div className="QuestionList-item-complete">{(choice && isPastTimeStamp) ? "Complete" : "Incomplete"}</div>
 					</div>
-				</div>
+				</button>
 			)
 		});
 
 		return (
-			<div className="QuestionList">
+			<div className="QuestionList" id="question-list">
 				{listItems}
 			</div>
 		);

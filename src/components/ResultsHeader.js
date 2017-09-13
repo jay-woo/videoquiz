@@ -6,8 +6,8 @@ class ResultsHeader extends Component {
 		return (
 			<div className="ResultsHeader">
 				<Score score={this.props.score}/>
-				<span className="ResultsHeader-message">Your quiz score!</span>
-				<span className="ResultsHeader-details">
+				<span className="ResultsHeader-message" aria-hidden="true">Your quiz score!</span>
+				<span className="ResultsHeader-details" aria-label={`${this.props.numQuestions} Questions. ${this.props.numCorrect} Correct. ${this.props.numIncorrect} Incorrect`}>
 					{this.props.numQuestions} Questions / {this.props.numCorrect} Correct / {this.props.numIncorrect} Incorrect - Score {this.props.score}%
 				</span>
 			</div>

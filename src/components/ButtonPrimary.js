@@ -4,7 +4,7 @@ class ButtonPrimary extends Component {
 	render() {
 		return (
 			<div className="ButtonPrimary">
-      	<button type="button" onClick={this.props.onClick}><p>{this.props.buttonText}</p></button>
+      	<button tabIndex={this.props.tabIndex} type="button" onClick={this.props.onClick} alt={this.props.alt}><p>{this.props.buttonText}</p></button>
       </div>
     );
 	}

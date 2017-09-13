@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class SubmitError extends Component {
 	render() {
 		return (
-			<div className="SubmitError">
+			<div className="SubmitError" role="alert">
 				<span className="SubmitError-heading">Error</span>
-    		<span className="SubmitError-close" onClick={this.props.toggleError}>&times;</span>
+    		<button aria-label="Close error message" className="SubmitError-close" onClick={this.props.toggleError}>&times;</button>
     		<p className="SubmitError-content">Please answer all the questions before submitting your quiz.</p>
 			</div>
 		);

@@ -21,8 +21,7 @@ class Video extends Component {
 			clearTimeout(this.props.currentTimeout);
 			this.props.setCurrentTimeout(null);
 		}
-		if (e.data === VIDEO_PLAYING && !this.currentTimeout) {
-			this.props.gotoQuestion(this.props.currentTimeStamp);
+		if (e.data === VIDEO_PLAYING && !this.props.currentTimeout) {
 			let timeStamps = this.props.timeStamps;
 			let currentTimeStamp = this.props.currentTimeStamp;
 
@@ -47,14 +46,14 @@ class Video extends Component {
 
   render() {
     return (
-    	<div className="Video">
-				<YouTube 
+    	<div className="Video" aria-hidden={!this.props.quizStarted}>
+				<YouTube
 					className="YouTube"
 					videoId="-FOCpMAww28"
 					onStateChange={this.onStateChange}
 					onReady={this.props.onPlayerReady}
 				/>
-    	</div>
+			</div>
     );
   }
 }

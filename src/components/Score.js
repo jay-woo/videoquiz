@@ -12,7 +12,7 @@ class Score extends Component {
 
 	render() {
 		return (
-			<div className="Score">
+			<div className="Score" aria-label={`Your quiz score is ${this.props.score}%`}>
 			  <svg width="100" height="100">
 			    <circle r="45" cx="50" cy="50" className="Score-orangecircle"/>
 			    <circle r="45" cx="50" cy="50" className="Score-tealcircle" id="pie"/>

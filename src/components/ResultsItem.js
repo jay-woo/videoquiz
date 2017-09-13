@@ -37,12 +37,15 @@ class ResultsItem extends Component {
 		}
 
 		return (
-			<div className="ResultsItem" onClick={this.handleClick}>
-				<span className="ResultsItem-question">
-					{this.props.showDetails ? '▾' : '▸'} Question {this.props.questionNum}
-				</span>
-				<span className="ResultsItem-timeStamp">[{this.props.timeStamp}]</span>
-				{mark}
+			<div className="ResultsItem">
+				<button className="ResultsItem-button" onClick={this.handleClick}
+					aria-label={`You got question ${this.props.questionNum} ${this.props.hasCorrectAnswer ? "correct" : "incorrect"}. Show details and jump to time stamp ${this.props.timeStamp}`} >
+					<span className="ResultsItem-question">
+						{this.props.showDetails ? '▾' : '▸'} Question {this.props.questionNum}
+					</span>
+					<span className="ResultsItem-timeStamp">[{this.props.timeStamp}]</span>
+					{mark}
+				</button>
 				{details}
 			</div>
 		);

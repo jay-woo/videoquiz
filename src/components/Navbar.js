@@ -6,18 +6,18 @@ import question from '../images/question.png';
 class Navbar extends Component {
   render() {
     return (
-      <div className="Navbar">
-	      <img className="Navbar-logo" src={logo} alt="Pearson" />
+      <div className="Navbar" role="navigation">
+	      <img className="Navbar-logo" src={logo} alt="Pearson logo" aria-hidden="true"/>
 
         <div className="Navbar-links">
-		      <a className="Navbar-icon">
+		      <a className="Navbar-icon" tabIndex="1">
             <img src={bell} alt="Alerts" />
           </a>
-		      <a className="Navbar-icon">
-            <img src={question} alt="Help" />
+		      <a className="Navbar-icon" tabIndex="2">
+            <img src={question} alt="Get help" />
           </a>
-		      <a className="Navbar-name">
-            <p>{this.props.username}</p>
+		      <a className="Navbar-name" tabIndex="3" >
+            <p alt="Username">{this.props.username}</p>
           </a>
         </div>
       </div>

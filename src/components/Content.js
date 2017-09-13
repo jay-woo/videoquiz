@@ -11,6 +11,7 @@ class Content extends Component {
     super(props);
 
     this.state = {
+      quizStarted: false,
       selectedChoices: this.props.quiz.questions.map((question, i) => null),
       submitted: false,
       showSubmitModal: false,
@@ -23,15 +24,32 @@ class Content extends Component {
       player: null,
     }
 
+    this.startQuiz = this.startQuiz.bind(this);
     this.selectChoice = this.selectChoice.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleError = this.toggleError.bind(this);
     this.toggleSuccess = this.toggleSuccess.bind(this);
+    this.showError = this.showError.bind(this);
+    this.showSuccess = this.showSuccess.bind(this);
     this.finalSubmitQuiz = this.finalSubmitQuiz.bind(this);
     this.onPlayerReady = this.onPlayerReady.bind(this);
     this.pauseVideo = this.pauseVideo.bind(this);
     this.playVideo = this.playVideo.bind(this);
     this.videoSeekTo = this.videoSeekTo.bind(this);
+    this.getVideoTime = this.getVideoTime.bind(this);
+
+    window.addEventListener('keypress', ((e) => {
+      if (e.keyCode === 13 || e.keyCode === 32) {
+        this.playVideo();
+      }
+    }));
+
+  }
+
+  startQuiz() {
+    this.setState({
+      quizStarted: true
+    });
   }
 
   selectChoice(choice, currentQuestion) {
@@ -58,6 +76,18 @@ class Content extends Component {
   toggleSuccess() {
     this.setState({
       showSubmitSuccess: !this.state.showSubmitSuccess
+    });
+  }
+
+  showError() {
+    this.setState({
+      showSubmitError: true
+    });
+  }
+
+  showSuccess() {
+    this.setState({
+      showSubmitSuccess: true
     });
   }
 
@@ -119,6 +149,12 @@ class Content extends Component {
     }
   }
 
+  getVideoTime() {
+    if (this.state.player) {
+      return this.state.player.getCurrentTime();
+    }
+  }
+
   videoSeekTo(seconds) {
     if (this.state.player) {
       this.state.player.seekTo(seconds, false);
@@ -153,7 +189,7 @@ class Content extends Component {
         />;
     }
     else {
-      contentHeader = <VideoQuizHeader quizInfo={this.props.quizInfo}/>;
+      contentHeader = <VideoQuizHeader quizInfo={this.props.quizInfo} quizStarted={this.state.quizStarted}/>;
     }
 
     // Combined divs
@@ -168,6 +204,7 @@ class Content extends Component {
 	    		quiz={this.props.quiz}
       		toggleModal={this.toggleModal}
       		toggleError={this.toggleError}
+          showError={this.showError}
           selectedChoices={this.state.selectedChoices}
           selectChoice={this.selectChoice}
           submitted={this.state.submitted}
@@ -177,6 +214,9 @@ class Content extends Component {
           pauseVideo={this.pauseVideo}
           playVideo={this.playVideo}
           videoSeekTo={this.videoSeekTo}
+          quizStarted={this.state.quizStarted}
+          startQuiz={this.startQuiz}
+          getVideoTime={this.getVideoTime}
 	    	/>
     	</div>
     );

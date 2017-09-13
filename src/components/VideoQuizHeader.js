@@ -9,23 +9,24 @@ class VideoQuizHeader extends Component {
   	}
 
   	let {title, points, dueStart, dueEnd, objective, description} = this.props.quizInfo;
+
     return (
-    	<div className="VideoQuizHeader">
-    		<div className="VideoQuizHeader-title">
-    			<p><strong>Title:</strong> {title}</p>
+    	<div className="VideoQuizHeader" >
+    		<div className="VideoQuizHeader-title" >
+    			<p><b>Title:</b> {title}</p>
     		</div>
-    		<div className="VideoQuizHeader-points">
-    			<p><strong>{points} Points</strong></p>
+    		<div className="VideoQuizHeader-points" >
+    			<p><b>{points} Points</b></p>
     		</div>
-    		<div className="VideoQuizHeader-due">
-    			<p><strong>Due: </strong>{dueStart} - {dueEnd}</p>
+    		<div className="VideoQuizHeader-due" >
+    			<p><b>Due: </b>{dueStart} - {dueEnd}</p>
     		</div>
         <div className="clear"></div>
-    		<div className="VideoQuizHeader-objective">
-    			<p><strong>Learning Objective:</strong> {objective}</p>
+    		<div className="VideoQuizHeader-objective" >
+    			<p><b>Learning Objective:</b> {objective}</p>
     		</div>
-    		<div className="VideoQuizHeader-description">
-    			<p><strong>Description:</strong> {description}</p>
+    		<div className="VideoQuizHeader-description" >
+    			<p><b>Description:</b> {description}</p>
     		</div>
     	</div>
     );

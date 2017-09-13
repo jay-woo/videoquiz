@@ -8,25 +8,17 @@ class VideoQuiz extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			quizStarted: false,
 			quizComplete: false,
 			currentQuestion: 0,
       currentTimeStamp: 0,
       currentTimeout: null
 		}
 
-		this.startQuiz = this.startQuiz.bind(this);
     this.setCurrentTimeStamp = this.setCurrentTimeStamp.bind(this);
     this.setCurrentTimeout = this.setCurrentTimeout.bind(this);
 		this.gotoQuestion = this.gotoQuestion.bind(this);
 		this.nextQuestion = this.nextQuestion.bind(this);
     this.submitQuiz = this.submitQuiz.bind(this);
-	}
-
-	startQuiz() {
-		this.setState({
-			quizStarted: true
-		});
 	}
 
   setCurrentTimeStamp(i) {
@@ -55,7 +47,7 @@ class VideoQuiz extends Component {
 
 	submitQuiz() {
 		if (this.props.selectedChoices.some((choice) => choice === null)) {
-			this.props.toggleError();
+			this.props.showError();
 		}
 		else {
       this.props.pauseVideo();
@@ -82,7 +74,7 @@ class VideoQuiz extends Component {
   	if (!this.props.submitted) {
   		questionHeader = 
   			<QuestionHeader
-      		quizStarted={this.state.quizStarted}
+      		quizStarted={this.props.quizStarted}
       		gotoQuestion={this.gotoQuestion}
       		points={points[currentQuestion]}
       		selectedChoices={this.props.selectedChoices}
@@ -92,7 +84,7 @@ class VideoQuiz extends Component {
       	/>;
       sideContent = 
 				<Quiz
-      		quizStarted={this.state.quizStarted}
+      		quizStarted={this.props.quizStarted}
       		question={questions[currentQuestion]}
       		choices={choices[currentQuestion]}
       		timeStamp={timeStamps[currentQuestion]}
@@ -104,6 +96,8 @@ class VideoQuiz extends Component {
       		submitQuiz={this.submitQuiz}
           playVideo={this.props.playVideo}
           currentTimeout={this.state.currentTimeout}
+          getVideoTime={this.props.getVideoTime}
+          calculateTimeStampInSeconds={this.calculateTimeStampInSeconds}
       	/>;
   	}
   	else {
@@ -121,11 +115,12 @@ class VideoQuiz extends Component {
   	}
 
     return (
-      <div className="VideoQuiz">
+      <div className="VideoQuiz" aria-live="polite">
       	{questionHeader}
 
       	<Video
-          startQuiz={this.startQuiz}
+          quizStarted={this.props.quizStarted}
+          startQuiz={this.props.startQuiz}
           timeStamps={timeStamps}
           currentTimeStamp={this.state.currentTimeStamp}
           setCurrentTimeStamp={this.setCurrentTimeStamp}
@@ -134,9 +129,11 @@ class VideoQuiz extends Component {
           onPlayerReady={this.props.onPlayerReady}
           pauseVideo={this.props.pauseVideo}
           playVideo={this.props.playVideo}
+          currentTimeout={this.state.currentTimeout}
           setCurrentTimeout={this.setCurrentTimeout}
           calculateTimeStampInSeconds={this.calculateTimeStampInSeconds}
         />
+
       	{sideContent}
       </div>
     );

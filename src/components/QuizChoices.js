@@ -19,6 +19,7 @@ class QuizChoices extends Component {
             name={"question" + this.props.currentQuestion}
             value={"choice" + i}
             checked={i === this.props.selectedChoice ? "checked" : ""}
+            tabIndex="10"
           />
           {choice}
         </label>
@@ -28,9 +29,9 @@ class QuizChoices extends Component {
 
   	return (
   		<div className="QuizChoices">
-        <p>Question {this.props.currentQuestion + 1} [{this.props.timeStamp}]</p>
+        <p id="quizQuestion">Question {this.props.currentQuestion + 1} [{this.props.timeStamp}]</p>
 
-        <form>
+        <form aria-label={`Select an answer for question ${this.props.currentQuestion + 1}`}>
           {choicesTemplate}
         </form>
       </div>

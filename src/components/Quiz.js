@@ -17,7 +17,9 @@ class Quiz extends Component {
   	if (!this.props.quizStarted) {
   		return (
   			<div className="Quiz-notStarted">
-  				<p>Select the play button to begin your quiz.</p>
+  				<p aria-label="Press space or enter to begin your quiz">
+            Select the play button to begin your quiz.
+          </p>
   			</div>
   		);
   	}
@@ -25,20 +27,23 @@ class Quiz extends Component {
     let currentQuestion = this.props.currentQuestion;
     let button = null;
 
-    if (this.props.selectedChoice == null || this.props.currentTimeout != null) {
+    let currentVideoTime = this.props.getVideoTime();
+    let currentTimeStamp = this.props.calculateTimeStampInSeconds(this.props.timeStamp);
+
+    if (this.props.selectedChoice == null || currentVideoTime < currentTimeStamp) {
       button = <div></div>;
     }
     else if (this.props.currentQuestion < this.props.numQuestions - 1) {
-      button = <ButtonPrimary onClick={this.handleResumeClick} buttonText="Resume" />;
+      button = <ButtonPrimary onClick={this.handleResumeClick} buttonText="Resume" tabIndex="11"/>;
     }
     else {
-      button = <ButtonPrimary onClick={this.props.submitQuiz} buttonText="Submit Quiz"/>;
+      button = <ButtonPrimary onClick={this.props.submitQuiz} buttonText="Submit Quiz" tabIndex="11"/>;
     }
 
     return (
       <div className="Quiz">
-        <div className="Quiz-question">
-          <p>{this.props.question}</p>
+        <div className="Quiz-question" aria-label={`Question ${currentQuestion+1}: ${this.props.question}`} >
+          <span>{this.props.question}</span>
         </div>
 
         <div className="Quiz-content">
